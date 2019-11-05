@@ -1,6 +1,5 @@
 import os
 import subprocess
-
 import platform
 
 # ===BEGIN_base_config===
