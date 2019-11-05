@@ -1,0 +1,45 @@
+#!/bin/sh
+
+CURDIR=`pwd`
+
+
+FILE_DIR=`dirname $0`
+cd $FILE_DIR
+FILE_DIR=`pwd`
+
+pdk_sh="pdk.sh"
+
+cd $CURDIR
+
+done="False"
+
+if [[ -e $CURDIR/$pdk_sh ]]; then
+    sh $CURDIR/$pdk_sh $*
+    done="True"
+fi
+
+if [[ $done == "False" ]]; then
+    if [[ -e $FILE_DIR/$pdk_sh ]]; then
+        sh $FILE_DIR/$pdk_sh $*
+        done="True"
+
+    fi
+fi
+
+if [[ $done == "False" ]]; then
+    for i in {1..50}; do
+        cd ..
+        CURDIR=`pwd`
+
+        if [[ $CURDIR == "/" ]] ; then
+            break
+        fi
+
+        if [[ -e $CURDIR/$pdk_sh ]]; then
+            #echo $CURDIR/plyn.sh
+            sh $CURDIR/$pdk_sh $*
+            done="True"
+            break
+        fi
+    done
+fi
