@@ -19,7 +19,7 @@ elif platform_system.upper() == "DARWIN":
 plynth_zip_url = "https://www.plynth.net/dl/1.3.7/b28ed3f9/" + zip_tmp_file_name
 
 if not os.path.exists(os.path.join(local_zip_dir, zip_tmp_file_name)):
-    urllib.request.urlretrieve(os.path.join(local_zip_dir, zip_tmp_file_name))
+    urllib.request.urlretrieve(plynth_zip_url, os.path.join(local_zip_dir, zip_tmp_file_name))
     pass
 
 
