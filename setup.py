@@ -38,6 +38,6 @@ if not os.path.exists(zip_local_path):
     print("Unabled to download and save a zip file")
 
 
-with zipfile.ZipFile(tgz_file) as existing_zip:
-    existing_zip.extractall(python_extract_dir)
+with zipfile.ZipFile(zip_local_path) as existing_zip:
+    existing_zip.extractall("__plynth")
 
