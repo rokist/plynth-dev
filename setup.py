@@ -1,7 +1,17 @@
-import sys
 import os
 import platform
+import sys
+import tarfile
+import zipfile
+import shutil
 import urllib.request
+import requests
+import subprocess
+import json
+from distutils.dir_util import copy_tree
+
+from pathlib import Path
+from subprocess import check_output, CalledProcessError, STDOUT
 
 
 platform_system = platform.system()
@@ -20,8 +30,14 @@ elif platform_system.upper() == "DARWIN":
 
 plynth_zip_url = "https://www.plynth.net/dl/1.3.7/b28ed3f9/" + zip_tmp_file_name
 
-if not os.path.exists(os.path.join(local_zip_dir, zip_tmp_file_name)):
-    urllib.request.urlretrieve(plynth_zip_url, os.path.join(local_zip_dir, zip_tmp_file_name))
-    pass
+zip_local_path = os.path.join(local_zip_dir, zip_tmp_file_name)
+if not os.path.exists(zip_local_path):
+    urllib.request.urlretrieve(plynth_zip_url, zip_local_path)
 
+if not os.path.exists(zip_local_path):
+    print("Unabled to download and save a zip file")
+
+
+with zipfile.ZipFile(tgz_file) as existing_zip:
+    existing_zip.extractall(python_extract_dir)
 
