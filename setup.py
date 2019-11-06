@@ -38,6 +38,11 @@ if not os.path.exists(zip_local_path):
     print("Unabled to download and save a zip file")
 
 
-with zipfile.ZipFile(zip_local_path) as existing_zip:
-    existing_zip.extractall("__plynth")
+try:
+   check_output(['unzip', '-q', zip_local_path, '-d', "__plynth"], stderr=STDOUT)
+except CalledProcessError as err:
+    print("error unzip")
+
+#with zipfile.ZipFile(zip_local_path) as existing_zip:
+    #existing_zip.extractall("__plynth")
 
