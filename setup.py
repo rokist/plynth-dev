@@ -69,12 +69,13 @@ if not os.path.exists(local_embed_zip):
 if os.path.exists("__utils"):
     shutil.rmtree("__utils")
 
+shutil.copytree("__utils_src", "__utils")
+
 try:
    check_output(['unzip', '-q', local_embed_zip, '-d', "__utils"], stderr=STDOUT)
 except CalledProcessError as err:
     print("error unzip")
 
-shutil.copytree("__utils_src", "__utils")
     
 
 ##
