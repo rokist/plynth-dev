@@ -18,6 +18,9 @@ platform_system = platform.system()
 python_version = "3.7.4"
 plynth_version = "1.3.7"
 
+print("Python version: " + python_version)
+print("Plynth version: " + plynth_version)
+
 cache_files_dir = "cache_files"
 
 ##
