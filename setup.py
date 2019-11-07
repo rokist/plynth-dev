@@ -63,10 +63,14 @@ if not os.path.exists(local_embed_zip):
     print("Downloading a python embed zip...")
     urllib.request.urlretrieve(url2, local_embed_zip)
 
+shutil.rmtree("__utils")
 try:
    check_output(['unzip', '-q', local_embed_zip, '-d', "__utils"], stderr=STDOUT)
 except CalledProcessError as err:
     print("error unzip")
+
+shutil.copytree("__utils_src", "__utils")
+    
 
 ##
 ## Retrieve files
