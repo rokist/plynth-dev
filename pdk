@@ -36,7 +36,6 @@ if [[ $done == "False" ]]; then
         fi
 
         if [[ -e $CURDIR/$pdk_sh ]]; then
-            #echo $CURDIR/plyn.sh
             sh $CURDIR/$pdk_sh $*
             done="True"
             break
