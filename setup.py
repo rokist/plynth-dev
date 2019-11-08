@@ -61,7 +61,7 @@ except CalledProcessError as err:
 if platform_system.upper() == "LINUX":
     shutil.copytree(os.path.join("__plynth", "bin"), os.path.join("__utils", "bin"))
     shutil.copytree(os.path.join("__plynth", "lib"), os.path.join("__utils", "lib"))
-else
+else:
     # zip of embed-python
     url1 = "https://www.python.org/ftp/python/3.7.4/python-3.7.4-embed-win32.zip"
     url2 = "https://www.python.org/ftp/python/3.7.4/python-3.7.4-embed-amd64.zip"
