@@ -55,32 +55,37 @@ try:
 except CalledProcessError as err:
     print("error unzip")
 
-#with zipfile.ZipFile(zip_local_path) as existing_zip:
-    #existing_zip.extractall("__plynth")
+##
+## Build up __utils dir
+##
+if platform_system.upper() == "LINUX":
+    shutil.copytree(os.path.join("__plynth", "bin"), os.path.join("__utils", "bin"))
+    shutil.copytree(os.path.join("__plynth", "lib"), os.path.join("__utils", "lib"))
+else
+    # zip of embed-python
+    url1 = "https://www.python.org/ftp/python/3.7.4/python-3.7.4-embed-win32.zip"
+    url2 = "https://www.python.org/ftp/python/3.7.4/python-3.7.4-embed-amd64.zip"
+    local_embed_zip = os.path.join(cache_files_dir, "embed.zip")
 
-# zip of embed-python
-url1 = "https://www.python.org/ftp/python/3.7.4/python-3.7.4-embed-win32.zip"
-url2 = "https://www.python.org/ftp/python/3.7.4/python-3.7.4-embed-amd64.zip"
-local_embed_zip = os.path.join(cache_files_dir, "embed.zip")
+    if os.path.exists(local_embed_zip):
+        os.unlink(local_embed_zip)
 
-if os.path.exists(local_embed_zip):
-    os.unlink(local_embed_zip)
+    if not os.path.exists(local_embed_zip):
+        print("Downloading a python embed zip...")
+        urllib.request.urlretrieve(url2, local_embed_zip)
 
-if not os.path.exists(local_embed_zip):
-    print("Downloading a python embed zip...")
-    urllib.request.urlretrieve(url2, local_embed_zip)
+    if os.path.exists("__utils"):
+        shutil.rmtree("__utils")
 
-if os.path.exists("__utils"):
-    shutil.rmtree("__utils")
+    shutil.copytree("__utils_src", "__utils")
 
-shutil.copytree("__utils_src", "__utils")
+    #with zipfile.ZipFile(zip_local_path) as existing_zip:
+        #existing_zip.extractall("__plynth")
 
-try:
-   check_output(['unzip', '-q', local_embed_zip, '-d', "__utils"], stderr=STDOUT)
-except CalledProcessError as err:
-    print("error unzip")
-
-    
+    try:
+       check_output(['unzip', '-q', local_embed_zip, '-d', "__utils"], stderr=STDOUT)
+    except CalledProcessError as err:
+        print("error unzip")
 
 ##
 ## Retrieve files
