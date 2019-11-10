@@ -50,6 +50,8 @@ if not os.path.exists(zip_local_path):
 if not os.path.exists(zip_local_path):
     print("Unabled to download and save a zip file")
 
+if os.path.exists("__plynth"):
+    shutil.rmtree("__plynth")
 try:
    check_output(['unzip', '-q', zip_local_path, '-d', "__plynth"], stderr=STDOUT)
 except CalledProcessError as err:
@@ -58,6 +60,11 @@ except CalledProcessError as err:
 ##
 ## Build up __utils dir
 ##
+if os.path.exists("__utils"):
+    shutil.rmtree("__utils")
+
+shutil.copytree("__utils_src", "__utils")
+
 if platform_system.upper() == "LINUX":
     shutil.copytree(os.path.join("__plynth", "bin"), os.path.join("__utils", "bin"))
     shutil.copytree(os.path.join("__plynth", "lib"), os.path.join("__utils", "lib"))
@@ -67,17 +74,13 @@ else:
     url2 = "https://www.python.org/ftp/python/3.7.4/python-3.7.4-embed-amd64.zip"
     local_embed_zip = os.path.join(cache_files_dir, "embed.zip")
 
-    if os.path.exists(local_embed_zip):
-        os.unlink(local_embed_zip)
+    #if os.path.exists(local_embed_zip):
+        #os.unlink(local_embed_zip)
 
     if not os.path.exists(local_embed_zip):
         print("Downloading a python embed zip...")
         urllib.request.urlretrieve(url2, local_embed_zip)
 
-    if os.path.exists("__utils"):
-        shutil.rmtree("__utils")
-
-    shutil.copytree("__utils_src", "__utils")
 
     #with zipfile.ZipFile(zip_local_path) as existing_zip:
         #existing_zip.extractall("__plynth")
