@@ -18,31 +18,29 @@ platform_system = platform.system()
 python_version = "3.7.4"
 plynth_version = "1.3.7"
 
-
 print("Python version: " + python_version)
 print("Plynth version: " + plynth_version)
 
-cache_files_dir = "cache_files"
+CACHE_FILES_DIR = "cache_files"
 
 ##
 ## Initialize variables
 ##
-if not os.path.exists(cache_files_dir):
-    os.mkdir(cache_files_dir)
+if not os.path.exists(CACHE_FILES_DIR):
+    os.mkdir(CACHE_FILES_DIR)
 
+
+##
+## Deals with __plynth dri
+##
 if platform_system.upper() == "LINUX":
     zip_tmp_file_name = "plynth-"+plynth_version+"_py"+python_version+"_linux_64.zip"
 elif platform_system.upper() == "DARWIN":
     pass
 
-##
-## Retrieve files
-##
-
-# retrieve a zip of plynth
 plynth_zip_url = "https://www.plynth.net/dl/1.3.7/b28ed3f9/" + zip_tmp_file_name
 
-zip_local_path = os.path.join(cache_files_dir, zip_tmp_file_name)
+zip_local_path = os.path.join(CACHE_FILES_DIR, zip_tmp_file_name)
 if not os.path.exists(zip_local_path):
     print("Downloading Plynth binaries...")
     urllib.request.urlretrieve(plynth_zip_url, zip_local_path)
@@ -58,7 +56,7 @@ except CalledProcessError as err:
     print("error unzip")
 
 ##
-## Build up __utils dir
+## Deals with __utils dir
 ##
 if os.path.exists("__utils"):
     shutil.rmtree("__utils")
@@ -72,7 +70,7 @@ else:
     # zip of embed-python
     url1 = "https://www.python.org/ftp/python/3.7.4/python-3.7.4-embed-win32.zip"
     url2 = "https://www.python.org/ftp/python/3.7.4/python-3.7.4-embed-amd64.zip"
-    local_embed_zip = os.path.join(cache_files_dir, "embed.zip")
+    local_embed_zip = os.path.join(CACHE_FILES_DIR, "embed.zip")
 
     #if os.path.exists(local_embed_zip):
         #os.unlink(local_embed_zip)
@@ -90,6 +88,3 @@ else:
     except CalledProcessError as err:
         print("error unzip")
 
-##
-## Retrieve files
-##
