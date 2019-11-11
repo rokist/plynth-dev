@@ -309,7 +309,7 @@ def call_hook_scripts(cwdir, hook_name, args):
             arg_dict["devkit_home"] = cwdir
             arg_dict["plynth_dir"] = os.path.join(cwdir, PLYNTH_DIR)
             arg_dict["dev_scripts_path"] = os.path.join(cwdir, DEV_VENV_DIR)
-            if is_windows:
+            if is_windows or is_linux:
                 arg_dict["plynth_assets_path"] = os.path.join(cwdir, PLYNTH_DIR, PYASSETS_NAME)
             else:
                 arg_dict["plynth_assets_path"] = os.path.join(cwdir, PLYNTH_DIR, "Plynth.app", "Contents","Frameworks", "lib", PYASSETS_NAME)
