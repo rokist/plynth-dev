@@ -313,6 +313,8 @@ def call_hook_scripts(cwdir, hook_name, args):
                 arg_dict["plynth_assets_path"] = os.path.join(cwdir, PLYNTH_DIR, PYASSETS_NAME)
             else:
                 arg_dict["plynth_assets_path"] = os.path.join(cwdir, PLYNTH_DIR, "Plynth.app", "Contents","Frameworks", "lib", PYASSETS_NAME)
+            if not os.path.exists(arg_dict["plynth_assets_path"]):
+                os.mkdir(arg_dict["plynth_assets_path"])
 
             for i in args:
                 arg_dict[i] = args[i]
