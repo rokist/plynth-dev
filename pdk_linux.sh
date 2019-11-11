@@ -14,10 +14,10 @@ PLYNTH_ENV_DIR="__plynth_venv"
 back_command=".back_command"
 next_command=".next_command"
 
-if [[ -e $back_command ]]; then
+if test -e $back_command ; then
     rm $back_command
 fi
-if [[ -e $next_command ]]; then
+if test -e $next_command ; then
     rm $next_command
 fi
 
@@ -48,13 +48,13 @@ END
         cd $WORKING_DIR
     fi
 
-    if [[ -e $next_command ]]; then
+    if test -e $next_command ; then
         command_list=`cat $next_command`
         rm $next_command
 
         #echo $command_list
 
-        if [[ $command_list == "__same__" ]]; then
+        if test $command_list == "__same__" ; then
             __utils/bin/python -B -u __utils/pdk.py "[$WORKING_DIR]" $*
         else
             __utils/bin/python -B -u __utils/pdk.py "[$WORKING_DIR]" $command_list
