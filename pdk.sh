@@ -48,7 +48,7 @@ END
         cd $WORKING_DIR
     fi
 
-    if test -e $next_command test then
+    if test -e $next_command ; then
         command_list=`cat $next_command`
         rm $next_command
 
