@@ -1340,7 +1340,7 @@ def find_pipenv_venv_location(target_dir, ask_to_install):
             print("Creating new pipenv project... : python " + python_version)
 
 
-            if is_mac:
+            if is_mac or is_linux:
                 add_install = " install --skip-lock " if has_Pipfile else ""
 
                 with open(os.path.join(cwdir, ".back_command"), mode="w") as write_file:

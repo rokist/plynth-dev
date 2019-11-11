@@ -54,7 +54,7 @@ END
 
         #echo $command_list
 
-        if test $command_list == "__same__" test; then
+        if test $command_list = "__same__" test; then
             __utils/python -B -u __utils/pdk.py "[$WORKING_DIR]" $*
         else
             __utils/python -B -u __utils/pdk.py "[$WORKING_DIR]" $command_list
