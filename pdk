@@ -14,13 +14,13 @@ cd $CURDIR
 done="False"
 
 if test -e $CURDIR/$pdk_sh ; then
-    sh $CURDIR/$pdk_sh $*
+    bash $CURDIR/$pdk_sh $*
     done="True"
 fi
 
 if test $done = "False" ; then
     if test -e $FILE_DIR/$pdk_sh ; then
-        sh $FILE_DIR/$pdk_sh $*
+        bash $FILE_DIR/$pdk_sh $*
         done="True"
 
     fi
@@ -36,7 +36,7 @@ if test $done = "False" ; then
         fi
 
         if test -e $CURDIR/$pdk_sh ; then
-            sh $CURDIR/$pdk_sh $*
+            bash $CURDIR/$pdk_sh $*
             done="True"
             break
         fi
