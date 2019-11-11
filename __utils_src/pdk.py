@@ -639,6 +639,22 @@ def appsync(cwdir, venv_dir, args, is_rebuild, installs=None):
         )
         site_packages_dir = os.path.join(venv_dir, "Lib", "site-packages")
 
+    elif is_linux:
+        target_site_packages_dir = os.path.join(
+            cwdir,
+            PLYNTH_DIR,
+            "lib",
+            f"python{str(sys.version_info.major)}.{str(sys.version_info.minor)}",
+            "site-packages",
+        )
+        os.makedirs(target_site_packages_dir, exist_ok=True)
+        
+        site_packages_dir = os.path.join(
+            venv_dir,
+            "lib",
+            f"python{str(sys.version_info.major)}.{str(sys.version_info.minor)}",
+            "site-packages",
+        )
     else:
         target_site_packages_dir = os.path.join(
             cwdir,
@@ -658,6 +674,7 @@ def appsync(cwdir, venv_dir, args, is_rebuild, installs=None):
             f"python{str(sys.version_info.major)}.{str(sys.version_info.minor)}",
             "site-packages",
         )
+
 
     passing_args = {
          "source_site_packages_path": site_packages_dir,
