@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 CWDIR=`pwd`
 
@@ -24,7 +24,7 @@ fi
 __utils/bin/python -B -u __utils/pdk.py "[$WORKING_DIR]" $*
 
 for i in {1..8}; do
-    if [[ -e $back_command ]]; then
+    if test -e $back_command ; then
         command_list=`cat $back_command`
         rm $back_command
 
