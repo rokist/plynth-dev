@@ -411,6 +411,18 @@ def run_python(cwdir, args):
         commands.extend(args)
         subprocess.call(commands)
 
+    if is_linux:
+        target_site_packages_dir = os.path.join(
+            cwdir,
+            PLYNTH_DIR,
+            "bin",
+            "python",
+        )
+        
+        commands = [target_site_packages_dir]
+        commands.extend(args)
+        subprocess.call(commands)
+
     if is_windows:
         source_path = os.path.join(cwdir, PLYNTH_DIR, PYASSETS_NAME, "python.exe")
         target_path = os.path.join(cwdir, PLYNTH_DIR, "_python.exe")
@@ -980,7 +992,7 @@ def invoke_pipenv_command(devmode, pipenv_command_args, next_command=None):
     else:
         venv_dir = PLYNTH_VENV_DIR
 
-    if is_mac:
+    if is_mac or is_linux:
         with open(".back_command", mode="w") as write_file:
             scr = "cd " + venv_dir
             scr += "\n"
@@ -1257,8 +1269,7 @@ def create_pipenv_project(target_dir, next_command):
         # python_version = "3.8"
 
         print("Creating pipenv project... : python " + python_version)
-
-        if is_mac:
+        if is_mac or is_linux:
             with open(os.path.join(cwdir, ".back_command"), mode="w") as write_file:
                 scr = "cd " + target_dir
                 scr += "\n"
@@ -1290,7 +1301,7 @@ def remove_pipenv(target_dir, next_command):
 
         print("Creating pipenv project... : python " + python_version)
 
-        if is_mac:
+        if is_mac or is_linux :
             with open(os.path.join(cwdir, ".back_command"), mode="w") as write_file:
                 scr = "cd " + target_dir
                 scr += "\n"
