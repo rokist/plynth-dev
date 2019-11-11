@@ -30,7 +30,7 @@ PYASSETS_NAME = "pyassets"
 
 is_mac = platform.system() == "Darwin"
 is_windows = platform.system() == "Windows"
-is_linux = platform.system() == "LINUX"
+is_linux = platform.system().upper() == "LINUX"
 
 which_command = "where" if is_windows else "which"
 
