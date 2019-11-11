@@ -247,8 +247,14 @@ def invoke_npm(cwdir, project_name, args):
 
 
 def invoke_project(cwdir, project_name, args):
-    if is_windows:
+    if is_windows :
         passing_args = [PLYNTH_DIR + "/plynth.exe", project_name]
+        passing_args.extend(args)
+
+        subprocess.call(passing_args)
+
+    if is_linux:
+        passing_args = [PLYNTH_DIR + "/plynth", project_name]
         passing_args.extend(args)
 
         subprocess.call(passing_args)

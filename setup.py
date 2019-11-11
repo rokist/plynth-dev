@@ -64,6 +64,9 @@ if os.path.exists("__utils"):
 shutil.copytree("__utils_src", "__utils")
 
 if platform_system.upper() == "LINUX":
+    os.unlink(os.path.join("pdk.sh"))
+    shutil.copyfile(os.path.join("pdk_linux.sh"), os.path.join("pdk.sh"))
+
     shutil.copytree(os.path.join("__plynth", "bin"), os.path.join("__utils", "bin"))
     shutil.copytree(os.path.join("__plynth", "lib"), os.path.join("__utils", "lib"))
 else:
