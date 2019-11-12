@@ -622,7 +622,7 @@ def release_project(cwdir, project_name, args):
             try:
                 os.chdir(release_workspace)
                 #check_output(['zip', '-ry', full_file_name, release_workspace], stderr=STDOUT)
-                shutil.make_archive(full_file_name, 'zip', root_dir=release_workspace, base_dir=release_workspace)
+                shutil.make_archive(full_file_name, 'zip', root_dir=".", base_dir=release_workspace)
             except CalledProcessError as err:
                 print("zip error: 98079")
             finally:
