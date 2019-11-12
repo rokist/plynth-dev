@@ -618,7 +618,7 @@ def release_project(cwdir, project_name, args):
 
             shutil.copytree(project_dir, app_target_dir)
             
-            shutil.make_archive(full_file_name, 'zip', release_workspace)
+            shutil.make_archive(full_file_name, 'zip', root_dir=release_workspace, base_dir=release_workspace)
             
             shutil.rmtree(app_target_dir)
             
