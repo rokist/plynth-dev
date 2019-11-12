@@ -621,7 +621,7 @@ def release_project(cwdir, project_name, args):
             cwdir = os.getcwd()
             try:
                 os.chdir(release_workspace)
-                check_output(['zip', '-ry', full_file_name, release_workspace], stderr=STDOUT)
+                check_output(['zip', '-ry', full_file_name, "*"], stderr=STDOUT)
             except CalledProcessError as err:
                 print("zip error: 98079")
             finally:
