@@ -599,6 +599,8 @@ def release_project(cwdir, project_name, args):
     if is_linux:
         app_name = project_name
         app_target_dir = os.path.join(release_workspace, "resources", "app")
+        if  os.path.join(release_workspace, "resources"):
+            os.mkdir(os.path.join(release_workspace, "resources"))
 
         if os.path.exists(app_target_dir):
             shutil.rmtree(app_target_dir)
@@ -615,7 +617,6 @@ def release_project(cwdir, project_name, args):
             print("Zipping...")
 
             shutil.copytree(project_dir, app_target_dir)
-
             
             cwdir = os.getcwd()
             try:
