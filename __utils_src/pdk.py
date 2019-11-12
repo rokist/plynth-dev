@@ -616,10 +616,15 @@ def release_project(cwdir, project_name, args):
 
             shutil.copytree(project_dir, app_target_dir)
 
+            
+            cwdir = os.getcwd()
             try:
-                check_output(['zip', '-ry', full_file_name, release_workspace], stderr=STDOUT, cwd=os.path.join(release_workspace,".."))
+                os.chdir(release_workspace)
+                check_output(['zip', '-ry', full_file_name, release_workspace], stderr=STDOUT, cwd=release_workspace)
             except CalledProcessError as err:
                 print("zip error: 98079")
+            finally:
+                os.chdir(cwdir)
             
             shutil.rmtree(app_target_dir)
             
