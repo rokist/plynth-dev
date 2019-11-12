@@ -596,6 +596,38 @@ def release_project(cwdir, project_name, args):
             zipf.close()
             break
     
+    if is_linux:
+        app_name = project_name
+        app_target_dir = os.path.join(release_workspace, "resources", "app")
+
+        if os.path.exists(app_target_dir):
+            shutil.rmtree(app_target_dir)
+
+        for idx in range(100000):
+            filename = zip_base_name + ("" if idx==0 else "_"+str(idx+1))+".zip"
+            full_file_name = os.path.join(cwdir, filename)
+
+            if os.path.exists(full_file_name):
+                continue
+
+            print("File name: " + filename)
+            print("File path: " + full_file_name)
+            print("Zipping...")
+
+            shutil.copytree(project_dir, app_target_dir)
+
+            try:
+                check_output(['zip', '-ry', full_file_name, release_workspace], stderr=STDOUT, cwd=release_workspace)
+            except CalledProcessError as err:
+                print("zip error: 9807889")
+            
+            shutil.rmtree(app_target_dir)
+            
+            print("Done.")
+
+            break
+        pass
+
     if is_mac:
         app_name = project_name +".app"
         new_app_dir = os.path.join(release_workspace, app_name)
