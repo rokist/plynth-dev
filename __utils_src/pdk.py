@@ -593,7 +593,7 @@ def release_project(cwdir, project_name, args):
 
             zipf = zipfile.ZipFile(full_file_name, "w", zipfile.ZIP_DEFLATED)
             zipdir(release_workspace, zipf, "")
-            zipdir(project_dir, zipf, "resources\\app")
+            zipdir(project_dir, zipf, os.path.join("resources", "app"))
 
             zipf.close()
             break
