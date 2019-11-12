@@ -562,7 +562,7 @@ def release_project(cwdir, project_name, args):
 
 
     
-    if is_windows:
+    if is_windows or is_linux:
         def zipdir(path, ziph, dir_inzip):
             for cur, dirs, files in os.walk(path):
                 for file in files:
@@ -573,6 +573,8 @@ def release_project(cwdir, project_name, args):
 
                     if file == "plynth.exe":
                         arcname = os.path.join(dir_inzip, os.path.relpath(cur, path), project_name+".exe")
+                    elif file == "plynth":
+                        arcname = os.path.join(dir_inzip, os.path.relpath(cur, path), project_name)
                     else:
                         arcname = os.path.join(dir_inzip, os.path.relpath(cur, path), file)
                     if arcname:
@@ -596,44 +598,6 @@ def release_project(cwdir, project_name, args):
             zipf.close()
             break
     
-    if is_linux:
-        app_name = project_name
-        app_target_dir = os.path.join(release_workspace, "resources", "app")
-        if  os.path.join(release_workspace, "resources"):
-            os.mkdir(os.path.join(release_workspace, "resources"))
-
-        if os.path.exists(app_target_dir):
-            shutil.rmtree(app_target_dir)
-
-        for idx in range(100000):
-            filename = zip_base_name + ("" if idx==0 else "_"+str(idx+1))+".zip"
-            full_file_name = os.path.join(cwdir, filename)
-
-            if os.path.exists(full_file_name):
-                continue
-
-            print("File name: " + filename)
-            print("File path: " + full_file_name)
-            print("Zipping...")
-
-            shutil.copytree(project_dir, app_target_dir)
-            
-            cwdir = os.getcwd()
-            try:
-                os.chdir(release_workspace)
-                #check_output(['zip', '-ry', full_file_name, release_workspace], stderr=STDOUT)
-                shutil.make_archive(full_file_name, 'zip', root_dir=".", base_dir=release_workspace)
-            except CalledProcessError as err:
-                print("zip error: 98079")
-            finally:
-                os.chdir(cwdir)
-            
-            shutil.rmtree(app_target_dir)
-            
-            print("Done.")
-
-            break
-        pass
 
     if is_mac:
         app_name = project_name +".app"
