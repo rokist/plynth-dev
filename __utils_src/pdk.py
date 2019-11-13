@@ -1458,7 +1458,7 @@ def make_appimage(cwdir, release_workspace, project_name, app_version):
     shutil.copytree(os.path.join(cwdir, PLYNTH_DIR), bin_dir)
     os.rename(os.path.join(cwdir, PLYNTH_DIR, "plynth"), os.path.join(cwdir, PLYNTH_DIR, project_name))
 
-    with open(os.path.join(release_workspace, "AppRun", mode="w") as write_file:
+    with open(os.path.join(release_workspace, "AppRun"), mode="w") as write_file:
         text = """#!/bin/sh
 SELF=$(readlink -f "$0")
 HERE=${SELF%/*}
@@ -1474,7 +1474,7 @@ exec "${EXEC}" "$@"
 """
         write_file.write(text)
 
-    with open(os.path.join(release_workspace, project_name+".desktop", mode="w") as write_file:
+    with open(os.path.join(release_workspace, project_name+".desktop"), mode="w") as write_file:
         text = """[Desktop Entry]
 Name="""+project_name+ """
 Exec="""+project_name+ """
