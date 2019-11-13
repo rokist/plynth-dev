@@ -4,6 +4,7 @@ import zipfile
 import platform
 
 is_mac = platform.system() == "Darwin"
+is_linux = platform.system().upper() == "LINUX"
 
 tensorflow_target_dir = "tensorflow_core"
 
@@ -17,6 +18,9 @@ so_list = [
 
 
 def __hook_will_build(info):
+    if is_linux:
+        return
+
     if not "skip_module_dirs" in info:
         info["skip_module_dirs"] = []
 
@@ -25,6 +29,8 @@ def __hook_will_build(info):
 
 
 def __hook_did_build(info):
+    if is_linux:
+        return
 
     target_packages_dir = info["target_site_packages_path"]
     source_packages_dir = info["source_site_packages_path"]
