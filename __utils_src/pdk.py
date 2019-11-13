@@ -1459,6 +1459,7 @@ def make_appimage(cwdir, release_workspace, project_name, app_version):
     print("Copying files...")
     shutil.copytree(os.path.join(cwdir, PLYNTH_DIR), bin_dir)
     os.rename(os.path.join(bin_dir, "plynth"), os.path.join(bin_dir, project_name))
+    st = os.stat(os.path.join(bin_dir, project_name))
     os.chmod(os.path.join(bin_dir, project_name), st.st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
 
     with open(os.path.join(release_workspace, "AppRun"), mode="w") as write_file:
@@ -1496,8 +1497,10 @@ Categories=Utility;
     os.chmod(os.path.join(bin_dir, project_name), st.st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
 
     req = urllib.request.Request(url)
-    urllib.request.urlretrieve(url, os.path.join(release_workspace, "appimagetool-x86_64.AppImage"))
-    os.chmod(os.path.join(release_workspace, "appimagetool-x86_64.AppImage"), st.st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
+    local_appimage_path = os.path.join(release_workspace, "appimagetool-x86_64.AppImage")
+    urllib.request.urlretrieve(url, local_appimage_path)
+    st = os.stat(local_appimage_path)
+    os.chmod(local_appimage_path, st.st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
  
 
 def newproject(cwdir, project_name, rest_args):
