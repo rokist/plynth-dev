@@ -1481,6 +1481,8 @@ exec "${EXEC}" "$@"
     st = os.stat(os.path.join(release_workspace, "AppRun"))
     os.chmod(os.path.join(release_workspace, "AppRun"), st.st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
 
+    shutil.copytree(os.path.join(cwdir, project_name), os.path.join(release_workspace, "usr", "bin", "resources", "app"))
+
     with open(os.path.join(release_workspace, project_name+".desktop"), mode="w") as write_file:
         text = """[Desktop Entry]
 Name="""+project_name+ """
@@ -1510,7 +1512,7 @@ Categories=Utility;
     try:
         check_output([local_appimage_path, release_workspace], stderr=STDOUT)
     except CalledProcessError as err:
-        print("appimagetool error: 32891")
+        print("appimagetool error 4891")
 
 def newproject(cwdir, project_name, rest_args):
     if os.path.exists(project_name) and len(os.listdir(project_name)) > 0:
