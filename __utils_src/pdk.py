@@ -537,11 +537,13 @@ def release_project(cwdir, project_name, args):
     # format linux: 'bare', 'appimage'
     archive_format = None
     val = None
-    for arg in args.reverse():
-        if val:
-            if arg == "-f": # format
-                archive_format = val
-        val = arg
+    print(args)
+    if args:
+        for arg in args.reverse():
+            if val:
+                if arg == "-f": # format
+                    archive_format = val
+            val = arg
 
 
     app_version = "1.0.0"
