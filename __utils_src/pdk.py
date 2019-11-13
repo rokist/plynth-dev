@@ -1458,7 +1458,7 @@ def make_appimage(cwdir, release_workspace, project_name, app_version):
 
     print("Copying files...")
     shutil.copytree(os.path.join(cwdir, PLYNTH_DIR), bin_dir)
-    os.rename(os.path.join(cwdir, PLYNTH_DIR, "plynth"), os.path.join(cwdir, PLYNTH_DIR, project_name))
+    os.rename(os.path.join(bin_dir, "plynth"), os.path.join(bin_dir, project_name))
 
     with open(os.path.join(release_workspace, "AppRun"), mode="w") as write_file:
         text = """#!/bin/sh
