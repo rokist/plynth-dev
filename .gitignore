@@ -3,5 +3,4 @@ __plynth_venv/.venv
 __dev_scripts/.venv
 __utils/bin
 __utils/lib
-__utils
 cache_files

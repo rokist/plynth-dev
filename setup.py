@@ -58,10 +58,11 @@ except CalledProcessError as err:
 ##
 ## Deals with __utils dir
 ##
-if os.path.exists("__utils"):
-    shutil.rmtree("__utils")
 
-shutil.copytree("__utils_src", "__utils")
+#if os.path.exists("__utils"):
+#    shutil.rmtree("__utils")
+#
+#shutil.copytree("__utils_src", "__utils")
 
 if platform_system.upper() == "LINUX":
     os.unlink(os.path.join("pdk.sh"))
