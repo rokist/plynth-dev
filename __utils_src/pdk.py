@@ -1489,10 +1489,6 @@ Categories=Utility;
 """
         write_file.write(text)
 
-    try:
-        check_output(['appimagetool', release_workspace], stderr=STDOUT)
-    except CalledProcessError as err:
-        print("appimagetool error: 32891")
 
     url = "https://github.com/AppImage/AppImageKit/releases/download/12/appimagetool-x86_64.AppImage"
     os.chmod(os.path.join(bin_dir, project_name), st.st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
@@ -1503,6 +1499,10 @@ Categories=Utility;
     st = os.stat(local_appimage_path)
     os.chmod(local_appimage_path, st.st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
  
+    try:
+        check_output([local_appimage_path, release_workspace], stderr=STDOUT)
+    except CalledProcessError as err:
+        print("appimagetool error: 32891")
 
 def newproject(cwdir, project_name, rest_args):
     if os.path.exists(project_name) and len(os.listdir(project_name)) > 0:
