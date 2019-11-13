@@ -1459,6 +1459,7 @@ def make_appimage(cwdir, release_workspace, project_name, app_version):
     print("Copying files...")
     shutil.copytree(os.path.join(cwdir, PLYNTH_DIR), bin_dir)
     os.rename(os.path.join(bin_dir, "plynth"), os.path.join(bin_dir, project_name))
+    os.chmod(os.path.join(bin_dir, project_name), st.st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
 
     with open(os.path.join(release_workspace, "AppRun"), mode="w") as write_file:
         text = """#!/bin/sh
@@ -1489,7 +1490,15 @@ Categories=Utility;
     try:
         check_output(['appimagetool', release_workspace], stderr=STDOUT)
     except CalledProcessError as err:
-        print("zip error: 9807889")
+        print("appimagetool error: 32891")
+
+    url = "https://github.com/AppImage/AppImageKit/releases/download/12/appimagetool-x86_64.AppImage"
+    os.chmod(os.path.join(bin_dir, project_name), st.st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
+
+    req = urllib.request.Request(url)
+    urllib.request.urlretrieve(url, os.path.join(release_workspace, "appimagetool-x86_64.AppImage"))
+    os.chmod(os.path.join(release_workspace, "appimagetool-x86_64.AppImage"), st.st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
+ 
 
 def newproject(cwdir, project_name, rest_args):
     if os.path.exists(project_name) and len(os.listdir(project_name)) > 0:
