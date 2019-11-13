@@ -1478,6 +1478,8 @@ EXEC=$(grep -e '^Exec=.*' "${HERE}"/*.desktop | head -n 1 | cut -d "=" -f 2 | cu
 exec "${EXEC}" "$@"
 """
         write_file.write(text)
+    st = os.stat(os.path.join(release_workspace, "AppRun"))
+    os.chmod(os.path.join(release_workspace, "AppRun"), st.st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
 
     with open(os.path.join(release_workspace, project_name+".desktop"), mode="w") as write_file:
         text = """[Desktop Entry]
