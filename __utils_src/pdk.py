@@ -1,5 +1,6 @@
 import sys
 import os
+import stat
 import time
 import urllib.request
 import shutil
