@@ -539,7 +539,7 @@ def release_project(cwdir, project_name, args):
     val = None
     print(args)
     if args:
-        for arg in args.reverse():
+        for arg in args[::-1]:
             if val:
                 if arg == "-f": # format
                     archive_format = val
