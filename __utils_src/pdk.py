@@ -1491,6 +1491,12 @@ Categories=Utility;
 """
         write_file.write(text)
 
+    # save png
+    with open(os.path.join(release_workspace, project_name+".png"), mode="w") as write_file:
+        text = """png
+"""
+        write_file.write(text)
+
 
     url = "https://github.com/AppImage/AppImageKit/releases/download/12/appimagetool-x86_64.AppImage"
     os.chmod(os.path.join(bin_dir, project_name), st.st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
