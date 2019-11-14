@@ -5,7 +5,6 @@ import tarfile
 import zipfile
 import shutil
 import urllib.request
-import requests
 import subprocess
 import json
 from distutils.dir_util import copy_tree
