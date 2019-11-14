@@ -1511,7 +1511,7 @@ Categories=Utility;
  
     if os.path.exists(local_appimage_path):
         try:
-            check_output([local_appimage_path, release_workspace, "--version"], stderr=STDOUT)
+            check_output([local_appimage_path, release_workspace, "--verbose"], stderr=STDOUT)
         except CalledProcessError as err:
             print("appimagetool error 4891")
     else:
