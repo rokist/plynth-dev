@@ -13,7 +13,7 @@ from pathlib import Path
 from subprocess import check_output, CalledProcessError, STDOUT
 
 
-platform_system = platform.system()
+platform_system = platform.system().upper()
 
 python_version = "3.7.4"
 plynth_version = "1.3.7"
@@ -33,9 +33,9 @@ if not os.path.exists(CACHE_FILES_DIR):
 ##
 ## Deals with __plynth dri
 ##
-if platform_system.upper() == "LINUX":
+if platform_system == "LINUX":
     zip_tmp_file_name = "plynth-"+plynth_version+"_py"+python_version+"_linux_64.zip"
-elif platform_system.upper() == "DARWIN":
+elif platform_system == "DARWIN":
     pass
 
 plynth_zip_url = "https://www.plynth.net/dl/1.3.7/b28ed3f9/" + zip_tmp_file_name
@@ -59,12 +59,7 @@ except CalledProcessError as err:
 ## Deals with __utils dir
 ##
 
-#if os.path.exists("__utils"):
-#    shutil.rmtree("__utils")
-#
-#shutil.copytree("__utils_src", "__utils")
-
-if platform_system.upper() == "LINUX":
+if platform_system == "LINUX":
     os.unlink(os.path.join("pdk.sh"))
     shutil.copyfile(os.path.join("pdk_linux.sh"), os.path.join("pdk.sh"))
 
