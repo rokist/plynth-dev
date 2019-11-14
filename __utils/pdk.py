@@ -1459,6 +1459,7 @@ def make_appimage(cwdir, release_workspace, project_name, app_version):
 
     print("Copying files...")
     shutil.copytree(os.path.join(cwdir, PLYNTH_DIR), bin_dir)
+    print("Done.")
     os.rename(os.path.join(bin_dir, "plynth"), os.path.join(bin_dir, project_name))
     st = os.stat(os.path.join(bin_dir, project_name))
     os.chmod(os.path.join(bin_dir, project_name), st.st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
@@ -1514,6 +1515,7 @@ Categories=Utility;
             cmds = [local_appimage_path, "-v", release_workspace]
             print(cmds)
             check_output(cmds, stderr=STDOUT)
+            print("Done.")
         except CalledProcessError as err:
             print("appimagetool error 4891")
     else:
