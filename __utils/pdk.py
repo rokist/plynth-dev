@@ -1499,20 +1499,23 @@ Categories=Utility;
 """
         write_file.write(text)
 
+    local_appimage_path = os.path.join(cwdir, "appimagetool-x86_64.AppImage")
+    if not os.path.exists(local_appimage_path):
+        url = "https://github.com/AppImage/AppImageKit/releases/download/12/appimagetool-x86_64.AppImage"
+        os.chmod(os.path.join(bin_dir, project_name), st.st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
 
-    url = "https://github.com/AppImage/AppImageKit/releases/download/12/appimagetool-x86_64.AppImage"
-    os.chmod(os.path.join(bin_dir, project_name), st.st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
-
-    req = urllib.request.Request(url)
-    local_appimage_path = os.path.join(release_workspace, "appimagetool-x86_64.AppImage")
-    urllib.request.urlretrieve(url, local_appimage_path)
-    st = os.stat(local_appimage_path)
-    os.chmod(local_appimage_path, st.st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
+        req = urllib.request.Request(url)
+        urllib.request.urlretrieve(url, local_appimage_path)
+        st = os.stat(local_appimage_path)
+        os.chmod(local_appimage_path, st.st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
  
-    try:
-        check_output([local_appimage_path, release_workspace], stderr=STDOUT)
-    except CalledProcessError as err:
-        print("appimagetool error 4891")
+    if os.path.exists(local_appimage_path):
+        try:
+            check_output([local_appimage_path, release_workspace], stderr=STDOUT)
+        except CalledProcessError as err:
+            print("appimagetool error 4891")
+    else:
+        print("Unabled to download appimagetool-x86_64.AppImage")
 
 def newproject(cwdir, project_name, rest_args):
     if os.path.exists(project_name) and len(os.listdir(project_name)) > 0:
