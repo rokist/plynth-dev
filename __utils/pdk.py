@@ -1512,8 +1512,8 @@ Categories=Utility;
  
     if os.path.exists(local_appimage_path):
         try:
-            cmds = [local_appimage_path, "-v", release_workspace]
-            print(cmds)
+            cmds = [local_appimage_path, release_workspace]
+            print(" ".join(cmds))
             check_output(cmds, stderr=STDOUT)
             print("Done.")
         except CalledProcessError as err:
