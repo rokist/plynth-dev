@@ -101,17 +101,13 @@ if platform_system == "LINUX":
 elif platform_system == "DARWIN":
 
     lib_dir = os.path.join( "__plynth", "Plynth.app/Contents/Frameworks/")
+
     shutil.copyfile(
         os.path.join(lib_dir, "libpython"+ to_minor_version+".dylib"),
-        os.path.join("__utils", "pydir"
-    )
-
-    #os.path.join(lib_dir, "Plynth Framework.framework/Versions/A/Libraries/", "libpython"+ to_minor_version+".dylib")
-
-    shutil.copyfile(
-        os.path.join(lib_dir,"python"),
         os.path.join("__utils", "pydir")
     )
+
+    shutil.copyfile( os.path.join(lib_dir,"python"), os.path.join("__utils", "pydir"))
 
     os.chmod(os.path.join("__utils", "pydir", "python"), 0o755)#os.path.join(lib))
 
