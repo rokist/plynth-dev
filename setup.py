@@ -14,7 +14,7 @@ from subprocess import check_output, CalledProcessError, STDOUT
 
 platform_system = platform.system().upper()
 
-python_version = "3.7.4"
+#python_version = "3.7.4"
 python_version = "3.6.8"
 
 plynth_version = "1.3.7"
@@ -91,7 +91,7 @@ else:
     # zip of embed-python
     #url1 = "https://www.python.org/ftp/python/3.7.4/python-3.7.4-embed-win32.zip"
     file_name = "python-"+python_version+"-embed-amd64.zip"
-    url2 = "https://www.python.org/ftp/python/3.7.4/" + file_name
+    url2 = "https://www.python.org/ftp/python/"+python_version+"/" + file_name
     local_embed_zip = os.path.join(CACHE_FILES_DIR, file_name)
 
     #if os.path.exists(local_embed_zip):
