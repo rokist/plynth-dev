@@ -47,24 +47,23 @@ if not os.path.exists(zip_local_path):
     print("Downloading Plynth binaries...")
     urllib.request.urlretrieve(plynth_zip_url, zip_local_path)
 
-if not os.path.exists(zip_local_path):
-    print("Unabled to download and save a zip file")
+if os.path.exists(zip_local_path):
+    if os.path.exists("__plynth"):
+        shutil.rmtree("__plynth")
 
-if os.path.exists("__plynth"):
-    shutil.rmtree("__plynth")
-
-
-if platform_system == "DARWIN":
-    try:
-       check_output(['unzip', '-q', zip_local_path, '-d', "__plynth"], stderr=STDOUT)
-    except CalledProcessError as err:
-        print("error unzip")
+    if platform_system == "DARWIN":
+        try:
+           check_output(['unzip', '-q', zip_local_path, '-d', "__plynth"], stderr=STDOUT)
+        except CalledProcessError as err:
+            print("error unzip")
+    else:
+        try:
+            with zipfile.ZipFile(zip_local_path) as existing_zip:
+                existing_zip.extractall("__plynth")
+        except Exception as err:
+            print(str(err))
 else:
-    try:
-        with zipfile.ZipFile(zip_local_path) as existing_zip:
-            existing_zip.extractall("__plynth")
-    except Exception as err:
-        print(str(err))
+    print("Unabled to download and save a zip file")
 
 
 ##
