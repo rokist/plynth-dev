@@ -31,6 +31,10 @@ CACHE_FILES_DIR = "cache_files"
 if not os.path.exists(CACHE_FILES_DIR):
     os.mkdir(CACHE_FILES_DIR)
 
+version_numbers = python_version.split('.')
+to_minor_version = version_numbers[0] + "." + version_numbers[1]
+major_version = version_numbers[0]
+
 ##
 ## Deals with __plynth uri
 ##
@@ -91,6 +95,47 @@ if platform_system == "LINUX":
 
     st = os.stat(os.path.join("__utils", "pydir", "bin", "python"))
     os.chmod(os.path.join("__utils", "pydir", "bin", "python"), st.st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
+
+elif platform_system == "DARWIN":
+
+    lib_dir = os.path.join( "__plynth", "Plynth.app/Contents/Frameworks/")
+    shutil.copyfile(
+            os.path.join(lib_dir, "libpython"+ to_minor_version+".dylib"),
+            os.path.join("__utils", "pydir"
+    )
+
+    #os.path.join(lib_dir, "Plynth Framework.framework/Versions/A/Libraries/", "libpython"+ to_minor_version+".dylib")
+
+    shutil.copyfile(
+            os.path.join(lib_dir,"python"),
+            os.path.join("__utils", "pydir")
+            )
+
+    os.chmod(os.path.join("__utils", "pydir", "python"), 0o755)#os.path.join(lib))
+
+    try:
+        shutil.copytree(
+            os.path.join(lib_dir, "include"),
+            os.path.join("__utils", "pydir", "include")
+        )
+    except:
+        pass
+
+    try:
+        # copy lib dir
+        shutil.copytree(
+            os.path.join(lib_dir, "lib"),
+            os.path.join("__utils", "pydir", "lib")
+        )
+    except:
+        pass
+
+
+    pyassets = os.path.join("__utils", "pydir", "lib", "pyassets")
+    if not os.path.exists(pyassets):
+        os.mkdir(pyassets)
+
+
 else:
     # zip of embed-python
     #url1 = "https://www.python.org/ftp/python/3.7.4/python-3.7.4-embed-win32.zip"
