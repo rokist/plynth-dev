@@ -51,6 +51,8 @@ if os.path.exists(zip_local_path):
     if os.path.exists("__plynth"):
         shutil.rmtree("__plynth")
 
+    #os.mkdir("__plynth")
+
     if platform_system == "DARWIN":
         try:
            check_output(['unzip', '-q', zip_local_path, '-d', "__plynth"], stderr=STDOUT)
