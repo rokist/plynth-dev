@@ -29,7 +29,7 @@ if not os.path.exists(CACHE_FILES_DIR):
     os.mkdir(CACHE_FILES_DIR)
 
 ##
-## Deals with __plynth dri
+## Deals with __plynth uri
 ##
 if platform_system == "LINUX":
     zip_tmp_file_name = "plynth-"+plynth_version+"_py"+python_version+"_linux_64.zip"
