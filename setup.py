@@ -71,13 +71,20 @@ else:
 ##
 ## Deals with __utils dir
 ##
+if not os.path.exists("__utils"):
+    os.mkdir(os.path.join("__utils")):
+
+if not os.path.exists(os.path.join("__utils", "pydir")):
+    os.mkdir(os.path.join("__utils", "pydir")):
+
 
 if platform_system == "LINUX":
     os.unlink(os.path.join("pdk.sh"))
     shutil.copyfile(os.path.join("pdk_linux.sh"), os.path.join("pdk.sh"))
 
-    shutil.copytree(os.path.join("__plynth", "bin"), os.path.join("__utils", "bin"))
-    shutil.copytree(os.path.join("__plynth", "lib"), os.path.join("__utils", "lib"))
+
+    shutil.copytree(os.path.join("__plynth", "bin"), os.path.join("__utils", "pydir", "bin"))
+    shutil.copytree(os.path.join("__plynth", "lib"), os.path.join("__utils", "pydir", "lib"))
 else:
     # zip of embed-python
     #url1 = "https://www.python.org/ftp/python/3.7.4/python-3.7.4-embed-win32.zip"
@@ -94,5 +101,5 @@ else:
 
 
     with zipfile.ZipFile(local_embed_zip) as existing_zip:
-        existing_zip.extractall("__utils")
+        existing_zip.extractall(os.path.join("__utils", "pydir"))
 
