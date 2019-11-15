@@ -1,6 +1,7 @@
 import os
 import platform
 import sys
+import stat
 import tarfile
 import zipfile
 import shutil
@@ -87,6 +88,9 @@ if platform_system == "LINUX":
 
     shutil.copytree(os.path.join("__plynth", "bin"), os.path.join("__utils", "pydir", "bin"))
     shutil.copytree(os.path.join("__plynth", "lib"), os.path.join("__utils", "pydir", "lib"))
+
+    st = os.stat(os.path.join("__utils", "pydir", "bin", "python"))
+    os.chmod(os.path.join("__utils", "pydir", "bin", "python"), st.st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
 else:
     # zip of embed-python
     #url1 = "https://www.python.org/ftp/python/3.7.4/python-3.7.4-embed-win32.zip"
