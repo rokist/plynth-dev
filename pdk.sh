@@ -21,7 +21,7 @@ if test -e $next_command ; then
     rm $next_command
 fi
 
-__utils/python -B -u __utils/pdk.py "[$WORKING_DIR]" $*
+__utils/pydir/python -B -u __utils/pdk.py "[$WORKING_DIR]" $*
 
 for i in {1..8}; do
     if test -e $back_command ; then
@@ -55,9 +55,9 @@ END
         #echo $command_list
 
         if test $command_list = "__same__" test; then
-            __utils/python -B -u __utils/pdk.py "[$WORKING_DIR]" $*
+            __utils/pydir/python -B -u __utils/pdk.py "[$WORKING_DIR]" $*
         else
-            __utils/python -B -u __utils/pdk.py "[$WORKING_DIR]" $command_list
+            __utils/pydir/python -B -u __utils/pdk.py "[$WORKING_DIR]" $command_list
         fi
 
     fi

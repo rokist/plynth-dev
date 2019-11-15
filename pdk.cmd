@@ -8,6 +8,6 @@ set cwdir=%~dp0
 
 cd /d %cwdir%
 
-__utils\python.exe -B -u __utils\pdk.py "[%cwdir%]" %*
+__utils\pydir\python.exe -B -u __utils\pdk.py "[%cwdir%]" %*
 
 cd /d %oldpwd%

@@ -21,6 +21,7 @@ VERSION = "1.0"
 PLYNTH_VENV_DIR = "__plynth_venv"
 PLYNTH_DIR = "__plynth"
 UTILS_DIR = "__utils"
+UTILS_PYDIR = os.path.join("__utils", "pydir")
 USER_SCRIPTS = "__dev_scripts"
 DEV_VENV_DIR = "__dev_scripts"
 ARGS_HIDDEN_DIR = ".pass_args_dir"
@@ -1104,11 +1105,11 @@ def prepare_pipenv_command():
                 pass
             else:
                 shutil.copy( 
-                    os.path.join(UTILS_DIR, "vcruntime140.dll"), 
+                    os.path.join(UTILS_PYDIR, "vcruntime140.dll"), 
                     PLYNTH_VENV_DIR
                 )
                 shutil.copy( 
-                    os.path.join(UTILS_DIR, "vcruntime140.dll"), 
+                    os.path.join(UTILS_PYDIR, "vcruntime140.dll"), 
                     DEV_VENV_DIR
                 )
         except:
@@ -1435,7 +1436,7 @@ def find_pipenv_venv_location(target_dir, ask_to_install):
                                 pass
                             else:
                                 shutil.copy( 
-                                    os.path.join(UTILS_DIR, "vcruntime140.dll"), 
+                                    os.path.join(UTILS_PYDIR, "vcruntime140.dll"), 
                                     os.path.join(venv_path.strip(), "Scripts")
                                 )
                         except Exception as e:
