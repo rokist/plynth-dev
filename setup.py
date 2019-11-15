@@ -75,7 +75,7 @@ if not os.path.exists("__utils"):
     os.mkdir("__utils")
 
 if not os.path.exists(os.path.join("__utils", "pydir")):
-    os.mkdir(os.path.join("__utils", "pydir")):
+    os.mkdir(os.path.join("__utils", "pydir"))
 
 
 if platform_system == "LINUX":
