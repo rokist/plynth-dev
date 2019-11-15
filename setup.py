@@ -15,8 +15,8 @@ from subprocess import check_output, CalledProcessError, STDOUT
 
 platform_system = platform.system().upper()
 
-#python_version = "3.7.4"
-python_version = "3.6.8"
+#python_version = "3.6.8"
+python_version = "3.7.4"
 
 plynth_version = "1.3.7"
 
@@ -104,10 +104,10 @@ elif platform_system == "DARWIN":
 
     shutil.copyfile(
         os.path.join(lib_dir, "libpython"+ to_minor_version+".dylib"),
-        os.path.join("__utils", "pydir")
+        os.path.join("__utils", "pydir", "libpython"+ to_minor_version+".dylib")
     )
 
-    shutil.copyfile( os.path.join(lib_dir,"python"), os.path.join("__utils", "pydir"))
+    shutil.copyfile( os.path.join(lib_dir,"python"), os.path.join("__utils", "pydir", "python"))
 
     os.chmod(os.path.join("__utils", "pydir", "python"), 0o755)#os.path.join(lib))
 
