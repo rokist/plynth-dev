@@ -56,7 +56,7 @@ if os.path.exists(zip_local_path):
 
     #os.mkdir("__plynth")
 
-    if platform_system == "DARWIN" || platform_system == "LINUX":
+    if platform_system == "DARWIN" or platform_system == "LINUX":
         try:
            check_output(['unzip', '-q', zip_local_path, '-d', "__plynth"], stderr=STDOUT)
         except CalledProcessError as err:
