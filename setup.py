@@ -72,7 +72,7 @@ else:
 ## Deals with __utils dir
 ##
 if not os.path.exists("__utils"):
-    os.mkdir(os.path.join("__utils")):
+    os.mkdir("__utils")
 
 if not os.path.exists(os.path.join("__utils", "pydir")):
     os.mkdir(os.path.join("__utils", "pydir")):
