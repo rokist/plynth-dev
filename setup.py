@@ -41,6 +41,8 @@ major_version = version_numbers[0]
 if platform_system == "LINUX":
     zip_tmp_file_name = "plynth-"+plynth_version+"_py"+python_version+"_linux_64.zip"
 elif platform_system == "DARWIN":
+    import ssl
+    ssl._create_default_https_context = ssl._create_unverified_context
     # plynth-1.3.7_py3.7.4_mac.zip
     zip_tmp_file_name = "plynth-"+plynth_version+"_py"+python_version+"_mac.zip"
 else: # Windows
