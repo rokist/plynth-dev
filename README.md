@@ -1,11 +1,42 @@
-# Plynth-dev
-This is the main repository of Plynth
-
-Currently this repository contains the python codes for the developtment kit and examples which you can use as a references.
-this repository hasn't contained C++ code of plynth
+# plynth-dev
 
 https://www.plynth.net
 
-# Install
-pip
+This is the main repository of Plynth, a Python/HTML/CSS GUI Framework.
 
+Currently this repository contains the python codes for the developtment kit and examples which you can use as a reference.
+
+
+<br>
+
+# Developing with the repository
+
+## Prerequisites
+You need to install `python` and `pipenv` into your system first in order to develop with the development kit.
+
+* [Windows](docs/install_windows.md)
+* [Mac](docs/install_mac.md)
+* [Linux](docs/install_linux.md)
+
+```sh
+$ python3 -V # 3.7.x or 3.6.x
+```
+
+```sh
+$ pipenv -V # pipenv, version 2018.11.26
+```
+
+
+## Initializing plynth development kit
+```sh
+$ git clone https://github.com/rokist/plynth-dev.git
+$ cd plynth-dev
+```
+
+```sh
+$ python3 setup.py
+```
+
+## Development of Plynth
+See the instruction at the main page.
+[https://www.plynth.net/docs?id=pdk_doc](https://www.plynth.net/docs?id=pdk_doc)
