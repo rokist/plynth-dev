@@ -131,6 +131,7 @@ if platform_system == "LINUX":
     st = os.stat(os.path.join("__utils", "pydir", "bin", "python"))
     os.chmod(os.path.join("__utils", "pydir", "bin", "python"), st.st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
 
+
 elif platform_system == "DARWIN":
 
     lib_dir = os.path.join( "__plynth", "Plynth.app/Contents/Frameworks/")

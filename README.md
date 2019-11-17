@@ -9,18 +9,19 @@ Currently this repository contains the python codes for the developtment kit and
 
 <br>
 
-# Starting a development with this repository
+# How to start development using this repository
 
 ## Prerequisites
 You need to install `python` and `pipenv` on your system first in order to develop with the development kit.
 
-* [Windows](docs/install_windows.md)
-  * We recommend the official binaries of Python, and with it, you don't have to install pipenv manually.
-* [Mac](docs/install_mac.md)
+* *Windows*
+  * We recommend the official binaries of Python, https://www.python.org/downloads/. On Windows, you don't have to install pipenv manually.
+* *Mac*
   * Installing `pipenv` by Homebrew is recommended.
-* [Linux](docs/install_linux.md)
-  * There are many distributions. see [this page](docs/linux_prequisites.md).
+* *Linux*
+  * See [this page](docs/linux_prequisites.md).
 
+#### Check commands
 ```sh
 $ python3 -V # 3.7.x or 3.6.x
 ```
@@ -38,9 +39,9 @@ $ cd plynth-dev
 ```
 
 ```sh
-$ python3 setup.py
+$ python3 setup.py # use -l to show available python versions
 ```
 
-## Development of Plynth
+## Develop an application using Plynth development kit
 See the instruction at the main page.
 [https://www.plynth.net/docs?id=pdk_doc](https://www.plynth.net/docs?id=pdk_doc)
