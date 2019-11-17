@@ -15,15 +15,43 @@ from subprocess import check_output, CalledProcessError, STDOUT
 
 platform_system = platform.system().upper()
 
-#python_version = "3.6.8"
-python_version = "3.7.4"
+python_versions = [ "3.6.8", "3.7.4"]
+for pyver in python_versions:
+    python_version = pyver
 
 plynth_version = "1.3.7"
+
+
+CACHE_FILES_DIR = "cache_files"
+
+
+list_option = None
+py_ver = ""
+
+if len(sys.argv) > 1:
+    arglist = sys.argv[1:]
+    arglist.reverse()
+    last_val = ""
+    for a in arglist:
+        if a == "-l":
+            list_option = True
+        elif a == "-p" and last_val:
+            py_ver = last_val 
+
+        last_val = a
+
+if list_option:
+    print("You can set python version by specifying -p option")
+    print(python_versions)
+    sys.exit()
+
+if py_ver in python_versions:
+    python_version = py_ver
+
 
 print("Python version: " + python_version)
 print("Plynth version: " + plynth_version)
 
-CACHE_FILES_DIR = "cache_files"
 
 ##
 ## Initialize variables
@@ -91,6 +119,11 @@ if platform_system == "LINUX":
     os.unlink(os.path.join("pdk.sh"))
     shutil.copyfile(os.path.join("pdk_linux.sh"), os.path.join("pdk.sh"))
 
+    if os.path.exists( os.path.join("__utils", "pydir", "bin")):
+        shutil.rmtree( os.path.join("__utils", "pydir", "bin") )
+
+    if os.path.exists( os.path.join("__utils", "pydir", "lib")):
+        shutil.rmtree( os.path.join("__utils", "pydir", "lib") )
 
     shutil.copytree(os.path.join("__plynth", "bin"), os.path.join("__utils", "pydir", "bin"))
     shutil.copytree(os.path.join("__plynth", "lib"), os.path.join("__utils", "pydir", "lib"))
