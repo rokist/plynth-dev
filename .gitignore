@@ -5,3 +5,5 @@ __utils/bin
 __utils/lib
 __utils/pydir
 cache_files
+
+*.swp

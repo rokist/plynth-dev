@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Vue.js library -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+        <!-- Bootstrap Python -->
+        <script type="text/python" import="plynth_calc" call="CalcApp"></script>
+        
+        <style>
+            * {
+                margin:0px;
+                padding:0px;
+            }
+
+            body {
+                overflow: hidden;
+            }
+
+            #calc-app {
+                position:absolute;
+                display:flex;
+                flex-direction: column;
+                width:100%;
+                height:100%;
+            }
+
+            #display {
+                background-color: rgb(255, 210, 151);
+                text-align:right;
+                padding:20px;
+            }
+
+            #main-display {
+                font-size: 50px;
+                height:50px;
+            }
+
+            #sub-display {
+                font-size: 22px;
+                height:30px;
+            }
+
+            .buttons-rows {
+                display:flex;
+                flex:1;
+                flex-direction: column;
+            }
+
+            .buttons-rows button {
+                color: darkslategrey;
+                flex:1;
+                font-size:33px;
+                box-sizing: border-box;
+                border: 0px solid transparent;
+                background-color: floralwhite;
+                text-align: center;
+                outline:0;
+
+            }
+
+            .row {
+                display:flex;
+                flex:1;
+                flex-direction: row;
+                height:100px;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            .row:nth-child(1) button:nth-child(2),
+            .row:nth-child(2) button:nth-child(1),
+            .row:nth-child(2) button:nth-child(3),
+            .row:nth-child(3) button:nth-child(2) 
+            {
+                background-color: bisque;
+            }
+
+            .op {
+                background-color: antiquewhite !important;
+            }
+
+            .op:hover, .number:hover {
+                background-color: aqua !important;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div id="calc-app">
+            <div id="display">
+                <div id="sub-display">{{subText}}</div>
+                <div id="main-display">{{mainText}}</div>
+            </div>
+
+            <div class="buttons-rows">
+                <div class="row">
+                    <button class="number" data-num="7" v-on:click="click_num">7</button>
+                    <button class="number" data-num="8" v-on:click="click_num">8</button>
+                    <button class="number" data-num="9" v-on:click="click_num">9</button>
+                    <button class="op" data-op="-" v-on:click="click_op">-</button>
+                </div>
+                <div class="row">
+                    <button class="number" data-num="4" v-on:click="click_num">4</button>
+                    <button class="number" data-num="5" v-on:click="click_num">5</button>
+                    <button class="number" data-num="6" v-on:click="click_num">6</button>
+                    <button class="op" data-op="+" v-on:click="click_op">+</button>
+                </div>
+                <div class="row">
+                    <button class="number" data-num="1" v-on:click="click_num">1</button>
+                    <button class="number" data-num="2" v-on:click="click_num">2</button>
+                    <button class="number" data-num="3" v-on:click="click_num">3</button>
+                    <button class="op" data-op="x" v-on:click="click_op">x</button>
+                </div>
+                <div class="row">
+                    <button class="op" data-op="c" v-on:click="click_op">C</button>
+                    <button class="number" data-num="0" v-on:click="click_num">0</button>
+                    <button class="op" data-op="=" v-on:click="click_op">=</button>
+                    <button class="op" data-op="/" v-on:click="click_op">/</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
