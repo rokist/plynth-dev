@@ -6,6 +6,7 @@ Plynth is a Python/HTML/CSS GUI Framework.
 
 Currently this repository contains the python codes for the developtment kit and examples which you can use as a reference.
 
+<img src="https://www.plynth.net/sites/default/files/2019-10/Screen%20Shot%202019-10-02%20at%2023.44.51.png" width="400px">
 
 <br>
 
