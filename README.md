@@ -40,7 +40,7 @@ $ cd plynth-dev
 ```
 
 ```sh
-$ python3 setup.py # use -l to show available python versions
+$ python3 setup.py -p 3.7.4 # use -l to show available python versions
 ```
 
 ## Develop an application using Plynth development kit
