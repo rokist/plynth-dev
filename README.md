@@ -79,6 +79,14 @@ $ pdk i requests
 $ pdk -p hello release
 ```
 
+
+## Start from an example
+* Windows
+  * Copy __utils/exmaples/xxxx to the top folder of pdk using Explorer.
+* Linux and Mac
+  * ``` cp -R __utils/examples/react_example ./```
+  
+  
 ## For more information
 See the instruction at the official documentation.
 [https://www.plynth.net/docs?id=pdk_doc](https://www.plynth.net/docs?id=pdk_doc)
