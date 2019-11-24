@@ -25,6 +25,8 @@ You need to install `python` and `pipenv` on your system first in order to devel
 #### Check commands
 ```sh
 $ python3 -V # 3.7.x or 3.6.x
+ or
+$ python -V # 3.7.x or 3.6.x
 ```
 
 ```sh
