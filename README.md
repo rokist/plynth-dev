@@ -85,6 +85,7 @@ $ pdk -p hello release
   * Copy __utils/exmaples/xxxx to the top folder of pdk using Explorer.
 * Linux and Mac
   * ``` cp -R __utils/examples/react_example ./```
+  * ``` pdk -p react_example run
   
   
 ## For more information
