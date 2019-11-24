@@ -96,7 +96,7 @@ See the instruction at the official documentation.
 <br>
 <br>
 
-<h1>Code</h1>
+# Code
 ## You can access DOM with natural syntax
 ```python
 import plynth.js as js
