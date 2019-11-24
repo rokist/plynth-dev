@@ -43,6 +43,40 @@ $ cd plynth-dev
 $ python3 setup.py -p 3.7.4 # use -l to show available python versions
 ```
 
-## Develop an application using Plynth development kit
-See the instruction at the main page.
+## Initialization
+* *Mac* or *Linux*
+  * `sudo cp pdk /usr/local/bin/`
+  * `sudo chmod 755 /usr/local/bin/pdk`
+
+```sh
+$ pdk init
+```
+
+## Create an application
+```sh
+$ pdk -p hello new
+```
+
+## Run the application
+```sh
+$ pdk -p hello run
+```
+
+## Edit the application with your favorite editor
+```sh
+$ vi hello/main.py
+```
+
+## Installing a python package
+```sh
+$ pdk i requests
+```
+
+## Release
+```sh
+$ pdk -p hello release
+```
+
+## For more information
+See the instruction at the official documentation.
 [https://www.plynth.net/docs?id=pdk_doc](https://www.plynth.net/docs?id=pdk_doc)
