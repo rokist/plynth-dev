@@ -82,6 +82,7 @@ else: # Windows
     pass
 
 plynth_zip_url = "https://www.plynth.net/dl/"+python_version+"/"+url_hash+"/" + zip_tmp_file_name
+print(plynth_zip_url)
 
 zip_local_path = os.path.join(CACHE_FILES_DIR, zip_tmp_file_name)
 if not os.path.exists(zip_local_path):
