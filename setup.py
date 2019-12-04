@@ -15,11 +15,15 @@ from subprocess import check_output, CalledProcessError, STDOUT
 
 platform_system = platform.system().upper()
 
-python_versions = [ "3.6.8", "3.7.4"]
+python_versions = [ "3.6.8", "3.7.5"]
 for pyver in python_versions:
     python_version = pyver
 
-plynth_version = "1.3.7"
+#plynth_version = "1.3.7"
+plynth_version = "1.3.8"
+
+#url_hash = "b28ed3f9"
+url_hash = "abee65d8"
 
 
 CACHE_FILES_DIR = "cache_files"
@@ -50,7 +54,7 @@ if py_ver in python_versions:
 
 
 print("Python version: " + python_version)
-print("Plynth version: " + plynth_version)
+print("PLYNTH version: " + plynth_version)
 
 
 ##
@@ -77,7 +81,7 @@ else: # Windows
     zip_tmp_file_name = "plynth-"+plynth_version+"_py"+python_version+"_win_64bit.zip"
     pass
 
-plynth_zip_url = "https://www.plynth.net/dl/1.3.7/b28ed3f9/" + zip_tmp_file_name
+plynth_zip_url = "https://www.plynth.net/dl/"+python_version+"/"+url_hash+"/" + zip_tmp_file_name
 
 zip_local_path = os.path.join(CACHE_FILES_DIR, zip_tmp_file_name)
 if not os.path.exists(zip_local_path):
