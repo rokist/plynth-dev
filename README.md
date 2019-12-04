@@ -89,18 +89,6 @@ $ pdk -p hello release
   
   
 ## For more information
-See the instruction at the official documentation.
-[https://www.plynth.net/docs?id=pdk_doc](https://www.plynth.net/docs?id=pdk_doc)
-
-
-<br>
-<br>
-
-# Code
-## You can access DOM with natural syntax
-```python
-import plynth.js as js
-
-js.document.getElementById("root").firstChild.nodeValue = "Hello"
-
-```
+See the instruction at the official document.
+* [Plynth development kit](https://www.plynth.net/docs?id=pdk_doc)
+* [Get started](https://www.plynth.net/docs?id=get_started)
