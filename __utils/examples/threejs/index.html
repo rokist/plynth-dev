@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="three.min.js"></script>
+        <script src="three.module.js"></script>
+
+        <script src="jsm/controls/OrbitControls.js"></script>
+        <!-- Bootstrap Python -->
+        <script type="text/python" import="plynth_calc" call="CalcApp"></script>
+        
+        <script>
+        console.info(EventDispatcher);
+        </script>
+        <style>
+            * {
+                margin:0px;
+                padding:0px;
+            }
+
+            body {
+                overflow: hidden;
+            }
+
+            #calc-app {
+                position:absolute;
+                display:flex;
+                flex-direction: column;
+                width:100%;
+                height:100%;
+            }
+
+            #display {
+                background-color: rgb(255, 210, 151);
+                text-align:right;
+                padding:20px;
+            }
+
+            #main-display {
+                font-size: 50px;
+                height:50px;
+            }
+
+            #sub-display {
+                font-size: 22px;
+                height:30px;
+            }
+
+            .buttons-rows {
+                display:flex;
+                flex:1;
+                flex-direction: column;
+            }
+
+            .buttons-rows button {
+                color: darkslategrey;
+                flex:1;
+                font-size:33px;
+                box-sizing: border-box;
+                border: 0px solid transparent;
+                background-color: floralwhite;
+                text-align: center;
+                outline:0;
+
+            }
+
+            .row {
+                display:flex;
+                flex:1;
+                flex-direction: row;
+                height:100px;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            .row:nth-child(1) button:nth-child(2),
+            .row:nth-child(2) button:nth-child(1),
+            .row:nth-child(2) button:nth-child(3),
+            .row:nth-child(3) button:nth-child(2) 
+            {
+                background-color: bisque;
+            }
+
+            .op {
+                background-color: antiquewhite !important;
+            }
+
+            .op:hover, .number:hover {
+                background-color: aqua !important;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div id="app">
+        </div>
+    </body>
+</html>
