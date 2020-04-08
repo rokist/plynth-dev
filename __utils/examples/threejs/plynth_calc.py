@@ -1,4 +1,5 @@
 import os
+import math
 import plynth
 import plynth.js as js
 
@@ -6,28 +7,105 @@ import plynth.js as js
 document, window, console = js.document, js.window, js.console
 three = js.THREE
 
+if not 'esmod' in globals():
+    esmod = js.esmod
+    js.esImport("esm://jsm/controls/OrbitControls.js", dict(OrbitControls=""));
+    js.esImport("esm://jsm/geometries/ConvexGeometry.js", dict(ConvexBufferGeometry=""));
+
 class CalcApp:
     def __init__(self):
-        console.info(three)
-        scene = three.Scene();
+        js.setTimeout(self.initLater, 350)
 
-        renderer = three.WebGLRenderer( { "antialias": True } );
-        renderer.setPixelRatio( window.devicePixelRatio );
-        renderer.setSize( window.innerWidth, window.innerHeight );
-        document.body.appendChild( renderer.domElement );
+    async def initLater(self):
+        await self.setup()
+        await self.animate()
 
+    async def setup(self):
+
+        self.scene = three.Scene();
+
+        self.renderer = three.WebGLRenderer( { "antialias": True } );
+        self.renderer.setPixelRatio( window.devicePixelRatio );
+        self.renderer.setSize( window.innerWidth, window.innerHeight );
+        document.body.appendChild( self.renderer.domElement );
 
         # camera
-        camera = three.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
-        camera.position.set( 15, 20, 30 );
-        scene.add( camera );
+        self.camera = three.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
+        self.camera.position.set( 15, 20, 30 );
+        self.scene.add( self.camera );
 
         # controls
-        controls = js.OrbitControls( camera, renderer.domElement );
+        controls = esmod.OrbitControls( self.camera, self.renderer.domElement );
         controls.minDistance = 20;
         controls.maxDistance = 50;
-        controls.maxPolarAngle = js.Math.PI / 2;
+        controls.maxPolarAngle = math.pi / 2;
 
-        scene.add( three.AmbientLight( 0x222222 ) );
+        self.scene.add( three.AmbientLight( 0x222222 ) );
 
-        console.info(controls)
+        # light
+        light = three.PointLight( 0xffffff, 0.6 );
+        self.camera.add( light );
+
+        #helper
+        self.scene.add( three.AxesHelper( 20 ) );
+
+        #textures
+        loader = three.TextureLoader();
+        texture = loader.load( 'textures/sprites/disc.png' );
+
+        self.group = three.Group();
+        self.scene.add( self.group );
+
+
+        #points
+        vertices = three.DodecahedronGeometry( 10 ).vertices;
+        #for ( var i = 0; i < vertices.length; i ++ ) {
+        #        //vertices[ i ].add( randomPoint().multiplyScalar( 2 ) ); // wiggle the points
+        #}
+
+        pointsMaterial = three.PointsMaterial( {
+            "color": 0x0080ff,
+            "map": texture,
+            "size": 1,
+            "alphaTest": 0.5
+        });
+
+        pointsGeometry = three.BufferGeometry().setFromPoints(vertices);
+
+        points = three.Points(pointsGeometry, pointsMaterial);
+        self.group.add(points);
+
+        #convex hull
+        meshMaterial = three.MeshLambertMaterial({
+            "color": 0xffffff,
+            "opacity": 0.4,
+            "transparent": True
+        });
+
+
+        meshGeometry = esmod.ConvexBufferGeometry( vertices );
+
+        mesh = three.Mesh(meshGeometry, meshMaterial );
+        mesh.material.side = three.BackSide; # // back faces
+        mesh.renderOrder = 0;
+        self.group.add(mesh);
+
+        mesh = three.Mesh(meshGeometry, meshMaterial.clone());
+        mesh.material.side = three.FrontSide; # // front faces
+        mesh.renderOrder = 1;
+
+        self.group.add(mesh);
+
+
+    async def animate(self):
+
+        js.requestAnimationFrame( self.animate );
+
+        self.group.rotation.y += 0.005;
+
+        self.render();
+
+
+    def render(self):
+        self.renderer.render( self.scene, self.camera );
+

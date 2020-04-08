@@ -4,13 +4,26 @@
         <script src="three.min.js"></script>
         <script src="three.module.js"></script>
 
-        <script src="jsm/controls/OrbitControls.js"></script>
-        <!-- Bootstrap Python -->
-        <script type="text/python" import="plynth_calc" call="CalcApp"></script>
-        
-        <script>
-        console.info(EventDispatcher);
+        <script type="module">
+
+
+        function esImport(filename, names)  {
+            import(filename).then((m)=>{
+                for (var n in names) {
+                    window.esmod[n] = m[n];
+                }
+            })
+        }
+
+        window.esmod = new Object();
+        window.esImport = esImport;
+
         </script>
+
+        <!-- Bootstrap Python -->
+        <script type="text/python" import="plynth_calc" call="CalcApp">
+        </script>
+        
         <style>
             * {
                 margin:0px;
