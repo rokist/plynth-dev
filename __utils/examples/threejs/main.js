@@ -7,14 +7,12 @@ protocol.registerSchemesAsPrivileged([
 ])
 
 function on_app_ready() {
-
-protocol.registerBufferProtocol("esm", async (req, cb) => {
-    const relpath = req.url.replace("esm://", "")
-    const filepath = path.resolve(__dirname, relpath)
-    const data = await fs.promises.readFile(filepath)
-    cb({ mineType: "text/javascript", data })
-})
-
+    protocol.registerBufferProtocol("esm", async (req, cb) => {
+        const relpath = req.url.replace("esm://", "")
+        const filepath = path.resolve(__dirname, relpath)
+        const data = await fs.promises.readFile(filepath)
+        cb({ mineType: "text/javascript", data })
+    })
 
     var browserWindow = new electron.BrowserWindow(
             {x:200, y:200, width:700, height:580}

@@ -7,20 +7,26 @@ import plynth.js as js
 document, window, console = js.document, js.window, js.console
 three = js.THREE
 
-if not 'esmod' in globals():
-    esmod = js.esmod
-    js.esImport("esm://jsm/controls/OrbitControls.js", dict(OrbitControls=""));
-    js.esImport("esm://jsm/geometries/ConvexGeometry.js", dict(ConvexBufferGeometry=""));
+#if not 'esmod' in globals():
+esmod = js.esmod
+esmodImportPromise = js.esImport( {
+    "jsm/controls/OrbitControls.js": ["OrbitControls"],
+    "jsm/geometries/ConvexGeometry.js": ["ConvexBufferGeometry"]
+});
+
+
+async def main():
+    await esmodImportPromise
+    CalcApp()
+
 
 class CalcApp:
     def __init__(self):
-        js.setTimeout(self.initLater, 350)
+        self.setup()
+        self.animate()
 
-    async def initLater(self):
-        await self.setup()
-        await self.animate()
-
-    async def setup(self):
+    def setup(self):
+        # https://github.com/mrdoob/three.js/blob/master/examples/webgl_geometry_convex.html
 
         self.scene = three.Scene();
 
@@ -97,7 +103,7 @@ class CalcApp:
         self.group.add(mesh);
 
 
-    async def animate(self):
+    def animate(self):
 
         js.requestAnimationFrame( self.animate );
 
