@@ -15,7 +15,7 @@ function on_app_ready() {
     })
 
     var browserWindow = new electron.BrowserWindow(
-            {x:200, y:200, width:700, height:580}
+            {x:200, y:200, width:700, height:580, webPreferences: { nodeIntegration: true }}
         );
 
     var url_dict = {

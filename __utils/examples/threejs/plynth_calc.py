@@ -9,6 +9,7 @@ three = js.THREE
 
 #if not 'esmod' in globals():
 esmod = js.esmod
+
 esmodImportPromise = js.esImport( {
     "jsm/controls/OrbitControls.js": ["OrbitControls"],
     "jsm/geometries/ConvexGeometry.js": ["ConvexBufferGeometry"]

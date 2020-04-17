@@ -4,11 +4,13 @@
         <script src="three.min.js"></script>
         <script src="three.module.js"></script>
 
-        <script type="module">
+
+        <script >
 
         async function esImport(import_map)  {
             for (let filename in import_map) {
-                const m = await import("esm://" +filename)
+                //const m = await import("esm://" +filename)
+                const m = await import("./" +filename)
                 const names = import_map[filename]
                 for (let n in names) {
                     const varname = names[n]
@@ -27,6 +29,9 @@
 
         window.esmod = new Object();
         window.esImport = esImport;
+
+        </script>
+        <script>
 
         </script>
 
