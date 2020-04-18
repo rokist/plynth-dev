@@ -16,6 +16,7 @@ from subprocess import check_output, CalledProcessError, STDOUT
 platform_system = platform.system().upper()
 
 python_versions = [ "3.6.8", "3.7.5"]
+python_versions = [ "3.6.8", "3.7.5", "3.8.2"]
 for pyver in python_versions:
     python_version = pyver
 
