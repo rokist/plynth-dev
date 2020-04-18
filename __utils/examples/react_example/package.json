@@ -1,0 +1,14 @@
+{
+    "name": "Plynth React Example",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {},
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {},
+    "deletedDependencies": {},
+    "dependencies": {
+    },
+    "plynth": {}
+}
+

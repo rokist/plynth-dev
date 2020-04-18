@@ -9,4 +9,5 @@ cache_files
 *.swp
 temp/
 __utils/examples/threejs/removed
+__utils/examples/removed
 **/__pycache__

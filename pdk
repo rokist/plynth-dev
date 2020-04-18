@@ -1,0 +1,44 @@
+#!/bin/sh
+
+CURDIR=`pwd`
+
+
+FILE_DIR=`dirname $0`
+cd $FILE_DIR
+FILE_DIR=`pwd`
+
+pdk_sh="pdk.sh"
+
+cd $CURDIR
+
+done="False"
+
+if test -e $CURDIR/$pdk_sh ; then
+    bash $CURDIR/$pdk_sh $*
+    done="True"
+fi
+
+if test $done = "False" ; then
+    if test -e $FILE_DIR/$pdk_sh ; then
+        bash $FILE_DIR/$pdk_sh $*
+        done="True"
+
+    fi
+fi
+
+if test $done = "False" ; then
+    for i in {1..50}; do
+        cd ..
+        CURDIR=`pwd`
+
+        if test $CURDIR = "/" ; then
+            break
+        fi
+
+        if test -e $CURDIR/$pdk_sh ; then
+            bash $CURDIR/$pdk_sh $*
+            done="True"
+            break
+        fi
+    done
+fi
